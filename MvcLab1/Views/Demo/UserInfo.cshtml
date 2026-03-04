@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Информация о пользователе";
+}
+
+<h1>Информация о пользователе</h1>
+
+@if (string.IsNullOrEmpty(ViewBag.Name) || ViewBag.Name == "Неизвестный")
+{
+    <div style="background-color:#fff3cd; padding:20px; border-radius:5px;">
+        <p><strong>Имя пользователя не указано!</strong></p>
+        <p>Попробуйте: /Demo/UserInfo?name=Иван&age=25</p>
+    </div>
+}
+else
+{
+    <div style="margin-top:20px; font-size:18px;">
+        <p><strong>Имя:</strong> @ViewBag.Name</p>
+        <p><strong>Возраст:</strong> @ViewBag.Age лет</p>
+
+        <p>
+            <strong>Статус:</strong>
+            @if (ViewBag.IsAdult)
+            {
+                <span style="color:green;">Совершеннолетний</span>
+            }
+            else
+            {
+                <span style="color:orange;">Несовершеннолетний</span>
+            }
+        </p>
+
+        <p><strong>Год рождения:</strong> @ViewData["BirthYear"]</p>
+        <p><strong>Текущий год:</strong> @ViewData["CurrentYear"]</p>
+    </div>
+}

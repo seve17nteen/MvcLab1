@@ -1,0 +1,10 @@
+﻿<h1>Альбомы исполнителя</h1>
+
+<ul>
+    @foreach (var album in ViewBag.Albums)
+    {
+        <li>@album</li>
+    }
+</ul>
+
+<a href="/music/artists">← Назад к исполнителям</a>

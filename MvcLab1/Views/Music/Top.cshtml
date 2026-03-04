@@ -1,0 +1,10 @@
+﻿<h1>Топ исполнителей</h1>
+
+<ol>
+    @foreach (var artist in ViewBag.TopArtists)
+    {
+        <li>@artist</li>
+    }
+</ol>
+
+<a href="/music/artists">Назад</a>
