@@ -1,0 +1,60 @@
+﻿@model MvcLab1.Models.Workout
+
+@{
+    ViewData["Title"] = "Детали тренировки";
+}
+
+<h1>Детали тренировки</h1>
+
+<hr />
+
+<dl class="row">
+
+    <dt class="col-sm-3">Название</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">Тип</dt>
+    <dd class="col-sm-9">@Model.Type</dd>
+
+    <dt class="col-sm-3">Длительность</dt>
+    <dd class="col-sm-9">@Model.Duration мин</dd>
+
+    <dt class="col-sm-3">Калории</dt>
+    <dd class="col-sm-9">@Model.Calories</dd>
+
+    <dt class="col-sm-3">Сложность</dt>
+    <dd class="col-sm-9">@Model.Difficulty</dd>
+
+    <dt class="col-sm-3">Инструктор</dt>
+    <dd class="col-sm-9">@Model.Instructor</dd>
+
+    <dt class="col-sm-3">Дата</dt>
+    <dd class="col-sm-9">@Model.Date.ToShortDateString()</dd>
+
+</dl>
+
+<div class="card mt-3">
+
+    <div class="card-header">
+        Расчет интенсивности
+    </div>
+
+    <div class="card-body">
+
+        <p>Интенсивность тренировки:</p>
+
+        <strong>@Model.GetIntensity() кал/мин</strong>
+
+    </div>
+
+</div>
+
+<div class="mt-3">
+
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактировать</a>
+
+    <a asp-action="Index" class="btn btn-secondary">Назад</a>
+
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger float-end">Удалить</a>
+
+</div>

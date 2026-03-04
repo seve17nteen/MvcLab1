@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IProductRepository, InMemoryProductRepository>();
+builder.Services.AddScoped<IWorkoutRepository, InMemoryWorkoutRepository>();
+
 
 var app = builder.Build();
 
