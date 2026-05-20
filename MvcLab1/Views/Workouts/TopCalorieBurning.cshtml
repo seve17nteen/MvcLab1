@@ -1,0 +1,107 @@
+﻿@model IEnumerable<MvcLab1.Models.Workout>
+
+@{
+    ViewData["Title"] = ViewBag.Title;
+}
+
+<h1>@ViewBag.Title</h1>
+
+<form method="get" class="row g-3 mb-4">
+
+    <div class="col-auto">
+        <label class="form-label">Количество</label>
+
+        <input type="number"
+               name="count"
+               class="form-control"
+               value="@ViewBag.Count"
+               min="1"
+               max="20" />
+    </div>
+
+    <div class="col-auto align-self-end">
+        <button type="submit" class="btn btn-primary">
+            Показать
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Назад
+        </a>
+    </div>
+
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">
+        Нет тренировок в базе данных
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <strong>
+            Топ @ViewBag.Count самых калорийных тренировок
+        </strong>
+    </div>
+
+    <table class="table table-striped table-hover table-bordered align-middle">
+
+        <thead class="table-light">
+            <tr>
+                <th>#</th>
+                <th>Название</th>
+                <th>Тип</th>
+                <th>Калории</th>
+                <th>Интенсивность</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @{
+                int rank = 1;
+            }
+
+            @foreach (var item in Model)
+            {
+                double intensity = (double)item.Calories / item.Duration;
+
+                <tr>
+
+                    <td>
+                        <strong>@(rank++)</strong>
+                    </td>
+
+                    <td>
+                        @item.Name
+                    </td>
+
+                    <td>
+                        @item.Type
+                    </td>
+
+                    <td class="text-danger fw-bold">
+                        @item.Calories ккал
+                    </td>
+
+                    <td>
+                        @intensity.ToString("F1") ккал/мин
+                    </td>
+
+                    <td>
+                        <a asp-action="Details"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-info">
+                            Детали
+                        </a>
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}

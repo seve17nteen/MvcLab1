@@ -27,9 +27,40 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Товары</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Workouts" asp-action="Index">Воркаут</a>
                         </li>
+
+                        <!-- ВЫПАДАЮЩЕЕ МЕНЮ ДЛЯ LINQ-ЗАПРОСОВ -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                📊 LINQ-запросы
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- Заголовок для товаров -->
+                                <li><h6 class="dropdown-header text-primary">📦 Товары</h6></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="ByPrice">💰 Фильтр по цене</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="TopExpensive">🏆 Топ дорогих</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="Search">🔍 Поиск</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="GroupedByCategory">📁 Группировка по категориям</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="Statistics">📊 Статистика</a></li>
+                                <li><a class="dropdown-item" asp-controller="Products" asp-action="Paginated">📄 Пагинация</a></li>
+
+                                <li><hr class="dropdown-divider"></li>
+
+                                <!-- Заголовок для тренировок -->
+                                <li><h6 class="dropdown-header text-success">🏋️ Тренировки</h6></li>
+                                <li><a class="dropdown-item" asp-controller="Workouts" asp-action="ByDuration">⏱️ Фильтр по длительности</a></li>
+                                <li><a class="dropdown-item" asp-controller="Workouts" asp-action="TopCalorieBurning">🔥 Топ калорийных</a></li>
+                                <li><a class="dropdown-item" asp-controller="Workouts" asp-action="Search">🔍 Поиск</a></li>
+                                <li><a class="dropdown-item" asp-controller="Workouts" asp-action="GroupedByType">📁 Группировка по типам</a></li>
+                                <li><a class="dropdown-item" asp-controller="Workouts" asp-action="Statistics">📊 Статистика</a></li>
+                                <li><a class="dropdown-item" asp-controller="Workouts" asp-action="Paginated">📄 Пагинация</a></li>
+                            </ul>
+                        </li>
+                        <!-- КОНЕЦ МЕНЮ LINQ-ЗАПРОСОВ -->
+
                     </ul>
                 </div>
             </div>
@@ -52,4 +83,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
- 

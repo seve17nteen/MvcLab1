@@ -1,0 +1,121 @@
+﻿@model MvcLab1.Models.WorkoutsStatisticsViewModel
+
+@{
+    ViewData["Title"] = "Статистика тренировок";
+}
+
+<h1>📊 Статистика тренировок</h1>
+
+@if (Model.TotalCount == 0)
+{
+    <div class="alert alert-warning">
+        Нет данных для статистики. Добавьте тренировки.
+    </div>
+}
+else
+{
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow">
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Всего тренировок
+                    </h5>
+
+                    <p class="card-text display-4">
+                        @Model.TotalCount
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow">
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Средние калории
+                    </h5>
+
+                    <p class="card-text display-4">
+                        @Model.AverageCalories.ToString("F0")
+                    </p>
+
+                    <small>
+                        ккал за тренировку
+                    </small>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-white bg-warning shadow">
+
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Диапазон длительности
+                    </h5>
+
+                    <p class="card-text">
+                        от @Model.DurationRange.MinDuration
+                        до @Model.DurationRange.MaxDuration минут
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <h2>Статистика по типам тренировок</h2>
+
+    <table class="table table-bordered table-striped align-middle">
+
+        <thead class="table-light">
+            <tr>
+                <th>Тип тренировки</th>
+                <th>Количество</th>
+                <th>Средние калории</th>
+                <th>Средняя длительность</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var type in Model.Types)
+            {
+                <tr>
+
+                    <td>
+                        @type.Type
+                    </td>
+
+                    <td>
+                        @type.Count
+                    </td>
+
+                    <td>
+                        @type.AverageCalories.ToString("F0") ккал
+                    </td>
+
+                    <td>
+                        @type.AverageDuration.ToString("F1") мин
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}
+
+<br />
+
+<a asp-action="Index" class="btn btn-secondary">
+    Назад к списку
+</a>
